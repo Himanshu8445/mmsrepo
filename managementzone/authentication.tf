@@ -1,7 +1,7 @@
 terraform {
   backend "azurerm" {
-    resource_group_name  = "rg-udf-tfstate-eus2-01"
-    storage_account_name = "strtfstateeus2bs001"
+    resource_group_name  = "VSCodeVM-RG"
+    storage_account_name = "tfstatestreus2001"
     container_name       = "tfstate-container"
     key                  = "dmz.tfstate"
   }

@@ -3,7 +3,7 @@ output "resourcegroup" {
   sensitive = true
 }
 
-output "storage_acct" {
+/* output "storage_acct" {
   value     = module.storage_acct
   sensitive = true
 }
@@ -31,4 +31,4 @@ output "key-vault" {
 output "loganalytics" {
   value     = module.loganalytics
   sensitive = true
-}
+} */

@@ -3,7 +3,7 @@ module "resourcegroup" {
   resource_groups = var.resource_groups
 }
 
-module "vnet" {
+/* module "vnet" {
   source                      = "../modules/networking"
   resource_group_name_network = var.resource_group_name_network
   virtual_networks            = var.virtual_networks
@@ -74,4 +74,4 @@ module "purview_account" {
   source          = "../modules/purviewaccount"
   purview_account = var.purview_account
   depends_on      = [module.resourcegroup]
-}
+} */
