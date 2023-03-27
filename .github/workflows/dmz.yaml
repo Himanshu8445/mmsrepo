@@ -19,7 +19,7 @@ jobs:
       ARM_CLIENT_SECRET: ${{ secrets.TF_VAR_SP_SECRET_DMZ }}
       ARM_SUBSCRIPTION_ID: ${{ secrets.TF_VAR_SUBSCRIPTION_ID_DMZ }}
       ARM_TENANT_ID: ${{ secrets.TF_VAR_TENANT_ID_DMZ }}
-    runs-on: runner1
+    runs-on: ubuntu-latest
     environment: dev
 ## Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
