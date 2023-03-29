@@ -1,5 +1,5 @@
 data "azurerm_resource_group" "this" {
-  name = var.resource_group_name_network
+  name = var.resource_group_name
 }
 
 data "azurerm_virtual_network" "this" {
@@ -9,12 +9,13 @@ data "azurerm_virtual_network" "this" {
 }
 
 locals {
+  location = data.azurerm_resource_group.this.location
   existing_vnets = {
     for subnet_k, subnet_v in var.subnets :
     subnet_k => subnet_v.vnet_name if(subnet_v.vnet_key == null && subnet_v.vnet_name != null)
   }
 
-  tags = var.vnet_tags
+  tags = var.net_additional_tags
 }
 
 ## Virtual Network
@@ -22,7 +23,7 @@ locals {
 resource "azurerm_virtual_network" "this" {
   for_each            = var.virtual_networks
   name                = each.value["name"]
-  location            = each.value["location"]
+  location            = local.location
   resource_group_name = data.azurerm_resource_group.this.name
   address_space       = each.value["address_space"]
   dns_servers         = lookup(each.value, "dns_servers", null)

@@ -147,3 +147,138 @@ variable "secrets" {
   description = "A map of secrets for the Key Vault"
   default     = {}
 }
+
+## VIRTUAL NETWORKS ##
+
+variable "npe_resource_group_name" {
+  type        = string
+  description = "The Name which should be used for this Resource Group."
+}
+
+variable "cus_resource_group_name" {
+  type        = string
+  description = "The Name which should be used for this Resource Group."
+}
+
+variable "eus_resource_group_name" {
+  type        = string
+  description = "The Name which should be used for this Resource Group."
+}
+
+variable "npe_location" {
+  type        = string
+  description = "The Azure Region used for resources such as: key-vault, storage-account, log-analytics and resource group."
+}
+
+variable "cus_location" {
+  type        = string
+  description = "The Azure Region used for resources such as: key-vault, storage-account, log-analytics and resource group."
+}
+
+variable "eus_location" {
+  type        = string
+  description = "The Azure Region used for resources such as: key-vault, storage-account, log-analytics and resource group."
+}
+
+variable "net_additional_tags" {
+  type        = map(string)
+  description = "Tags of the SA in addition to the resource group tag."
+}
+
+variable "npe_virtual_networks" {
+  description = "The virtal networks with their properties."
+  type = map(object({
+    name          = string
+    address_space = list(string)
+    dns_servers   = list(string)
+    ddos_protection_plan = object({
+      id     = string
+      enable = bool
+    })
+  }))
+}
+
+variable "cus_virtual_networks" {
+  description = "The virtal networks with their properties."
+  type = map(object({
+    name          = string
+    address_space = list(string)
+    dns_servers   = list(string)
+    ddos_protection_plan = object({
+      id     = string
+      enable = bool
+    })
+  }))
+}
+
+variable "eus_virtual_networks" {
+  description = "The virtal networks with their properties."
+  type = map(object({
+    name          = string
+    address_space = list(string)
+    dns_servers   = list(string)
+    ddos_protection_plan = object({
+      id     = string
+      enable = bool
+    })
+  }))
+}
+
+# - Subnet object
+# -
+variable "npe_subnets" {
+  description = "The virtal networks subnets with their properties."
+  type = map(object({
+    name              = string
+    vnet_key          = string
+    vnet_name         = string
+    address_prefixes  = list(string)
+    pe_enable         = bool
+    service_endpoints = list(string)
+    delegation = list(object({
+      name = string
+      service_delegation = list(object({
+        name    = string
+        actions = list(string)
+      }))
+    }))
+  }))
+}
+
+variable "cus_subnets" {
+  description = "The virtal networks subnets with their properties."
+  type = map(object({
+    name              = string
+    vnet_key          = string
+    vnet_name         = string
+    address_prefixes  = list(string)
+    pe_enable         = bool
+    service_endpoints = list(string)
+    delegation = list(object({
+      name = string
+      service_delegation = list(object({
+        name    = string
+        actions = list(string)
+      }))
+    }))
+  }))
+}
+
+variable "eus_subnets" {
+  description = "The virtal networks subnets with their properties."
+  type = map(object({
+    name              = string
+    vnet_key          = string
+    vnet_name         = string
+    address_prefixes  = list(string)
+    pe_enable         = bool
+    service_endpoints = list(string)
+    delegation = list(object({
+      name = string
+      service_delegation = list(object({
+        name    = string
+        actions = list(string)
+      }))
+    }))
+  }))
+}
