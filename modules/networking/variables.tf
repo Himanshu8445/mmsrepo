@@ -3,9 +3,20 @@ variable "resource_group_name" {
   description = "Specifies the name of the resource group in which to create the Azure Network Base Infrastructure Resources."
 }
 
-variable "vnet_tags" {
+variable "net_location" {
+  type        = string
+  description = "Network resources location if different than the resource group's location."
+  default     = null
+}
+
+variable "location" {
+  type        = string
+  description = "The Azure Region used for resources such as: key-vault, storage-account, log-analytics and resource group."
+}
+
+variable "net_additional_tags" {
   type        = map(string)
-  description = "A mapping of tags to assign to the resource."
+  description = "Additional Network resources tags, in addition to the resource group tags."
   default     = {}
 }
 
@@ -13,7 +24,6 @@ variable "virtual_networks" {
   description = "The virtal networks with their properties."
   type = map(object({
     name          = string
-    location      = string
     address_space = list(string)
     dns_servers   = list(string)
     ddos_protection_plan = object({
