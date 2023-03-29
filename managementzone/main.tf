@@ -25,6 +25,15 @@ module "loganalytics" {
   ]
 }
 
+module "key-vault" {
+  source             = "../modules/keyvault"
+  keyvaults          = var.keyvaults
+  kv_additional_tags = var.kv_additional_tags
+  access_policies    = var.access_policies
+  secrets            = var.secrets
+  depends_on         = [module.resourcegroup]
+}
+
 /* module "vnet" {
   source                      = "../modules/networking"
   resource_group_name_network = var.resource_group_name_network
@@ -48,15 +57,6 @@ module "route_table" {
   route_tables                = var.route_tables
   route_table_tags            = var.route_table_tags
   depends_on                  = [module.vnet]
-}
-
-module "key-vault" {
-  source             = "../modules/keyvault"
-  keyvaults          = var.keyvaults
-  kv_additional_tags = var.kv_additional_tags
-  access_policies    = var.access_policies
-  secrets            = var.secrets
-  depends_on         = [module.resourcegroup]
 }
 
 module "linuxvm" {
