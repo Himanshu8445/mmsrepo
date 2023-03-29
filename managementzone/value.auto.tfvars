@@ -98,3 +98,35 @@ law_linked_strg_name    = "stfxlmangzeus2prdbs002"
 law_additional_tags = {
   iac = "Terraform"
 }
+
+## Key Vault
+
+keyvaults = {
+  "kv_1" = {
+    keyvault_name                 = "kvfxlmangzeu2prd001"
+    location                      = "East US 2"
+    resource_group_name           = "rg-fxl-stgkv-eu2-prd-001"
+    kv_sku_name                   = "standard"
+    purge_protection              = true
+    public_network_access_enabled = true
+  }
+}
+
+access_policies = {
+  "accp1" = {
+    keyvault_name           = "kvfxlmangzeu2prd001"
+    group_names             = []
+    object_id               = "3297d4a1-ef85-40d6-b38b-18ee6ba197f3"
+    user_principal_names    = []
+    certificate_permissions = ["Get", "List"]
+    key_permissions         = ["Get", "List"]
+    secret_permissions      = ["Get", "List", "Set"]
+    storage_permissions     = ["Backup", "Get", "List", "ListSAS", "Recover", "Restore"]
+  }
+}
+
+secrets = {}
+
+kv_additional_tags = {
+  iac = "Terraform"
+}
