@@ -34,32 +34,34 @@ module "key-vault" {
   depends_on         = [module.resourcegroup]
 }
 
-/* module "vnet" {
-  source                      = "../modules/networking"
-  resource_group_name_network = var.resource_group_name_network
-  virtual_networks            = var.virtual_networks
-  subnets                     = var.subnets
-  vnet_tags                   = var.vnet_tags
-  depends_on                  = [module.resourcegroup]
+module "npe-vnet" {
+  source                         = "../modules/networking"
+  resource_group_name            = var.npe_resource_group_name
+  location                       = var.npe_location
+  subnets                        = var.npe_subnets
+  virtual_networks               = var.npe_virtual_networks
+  net_additional_tags            = var.net_additional_tags
 }
 
-module "nsg" {
-  source                  = "../modules/networksecuritygroup"
-  network_security_groups = var.network_security_groups
-  nsg_additional_tags     = var.nsg_additional_tags
-  nsg_subnet_association  = var.nsg_subnet_association
-  depends_on              = [module.vnet]
+module "cus-vnet" {
+  source                         = "../modules/networking"
+  resource_group_name            = var.cus_resource_group_name
+  location                       = var.cus_location
+  subnets                        = var.cus_subnets
+  virtual_networks               = var.cus_virtual_networks
+  net_additional_tags            = var.net_additional_tags
 }
 
-module "route_table" {
-  source                      = "../modules/routetable"
-  resource_group_name_network = var.resource_group_name_network
-  route_tables                = var.route_tables
-  route_table_tags            = var.route_table_tags
-  depends_on                  = [module.vnet]
+module "eus-vnet" {
+  source                         = "../modules/networking"
+  resource_group_name            = var.eus_resource_group_name
+  location                       = var.eus_location
+  subnets                        = var.eus_subnets
+  virtual_networks               = var.eus_virtual_networks
+  net_additional_tags            = var.net_additional_tags
 }
 
-module "linuxvm" {
+/* module "linuxvm" {
   source                  = "../modules/linuxvirtualmachine"
   linux_vms               = var.linux_vms
   resource_group_name_vm  = var.resource_group_name_vm

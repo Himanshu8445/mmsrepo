@@ -1,4 +1,4 @@
-variable "resource_group_name_network" {
+variable "resource_group_name" {
   type        = string
   description = "Specifies the name of the resource group in which to create the Azure Network Base Infrastructure Resources."
 }

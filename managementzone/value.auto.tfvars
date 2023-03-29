@@ -130,3 +130,196 @@ secrets = {}
 kv_additional_tags = {
   iac = "Terraform"
 }
+
+## Virtual Networks ##
+
+npe_resource_group_name = "rg-fxl-vnet-eu2-npe-001"
+npe_location            = "East US 2"
+cus_resource_group_name = "rg-fxl-vnet-cus-prd-001"
+cus_location            = "centralus"
+eus_resource_group_name = "rg-fxl-vnet-eu2-prd-001"
+eus_location            = "East US 2"
+
+npe_virtual_networks = {
+  npe = {
+    name                 = "vnet-fxl-mangz-eu2-npe-001"
+    address_space        = ["172.19.160.0/22"]
+    dns_servers          = null
+    ddos_protection_plan = null
+  }
+}
+
+cus_virtual_networks = {
+  cus = {
+    name                 = "vnet-fxl-mangz-cus-prd-001"
+    address_space        = ["172.19.164.0/23"]
+    dns_servers          = null
+    ddos_protection_plan = null
+  }
+}
+
+eus_virtual_networks = {
+  eus = {
+    name                 = "vnet-fxl-mangz-eu2-prd-001"
+    address_space        = ["172.19.206.0/23"]
+    dns_servers          = null
+    ddos_protection_plan = null
+  }
+}
+
+npe_subnets = {
+  subnet1 = {
+    vnet_key          = "npe"
+    vnet_name         = "vnet-fxl-mangz-eu2-npe-001"
+    name              = "snet-fxl-admin-eu2-dev-001"
+    address_prefixes  = ["172.19.160.0/24"]
+    service_endpoints = ["Microsoft.Storage", "Microsoft.KeyVault"]
+    pe_enable         = false
+    delegation        = null
+  },
+  subnet2 = {
+    vnet_key          = "npe"
+    vnet_name         = "vnet-fxl-mangz-eu2-npe-001"
+    name              = "snet-fxl-mlfrw-eu2-dev-001"
+    address_prefixes  = ["172.19.162.0/28"]
+    service_endpoints = ["Microsoft.Storage", "Microsoft.KeyVault"]
+    pe_enable         = false
+    delegation        = null
+  },
+  subnet3 = {
+    vnet_key          = "npe"
+    vnet_name         = "vnet-fxl-mangz-eu2-npe-001"
+    name              = "snet-fxl-mlscr-eu2-dev-001"
+    address_prefixes  = ["172.19.162.16/28"]
+    service_endpoints = ["Microsoft.Storage", "Microsoft.KeyVault"]
+    pe_enable         = false
+    delegation        = null
+  },
+  subnet4 = {
+    vnet_key          = "npe"
+    vnet_name         = "vnet-fxl-mangz-eu2-npe-001"
+    name              = "snet-fxl-mltrn-eu2-dev-001"
+    address_prefixes  = ["172.19.162.32/28"]
+    service_endpoints = ["Microsoft.Storage", "Microsoft.KeyVault"]
+    pe_enable         = false
+    delegation        = null
+  },
+  subnet5 = {
+    vnet_key          = "npe"
+    vnet_name         = "vnet-fxl-mangz-eu2-npe-001"
+    name              = "snet-fxl-admin-cus-uat-001"
+    address_prefixes  = ["172.19.161.0/24"]
+    service_endpoints = ["Microsoft.Storage", "Microsoft.KeyVault"]
+    pe_enable         = false
+    delegation        = null
+  },
+  subnet6 = {
+    vnet_key          = "npe"
+    vnet_name         = "vnet-fxl-mangz-eu2-npe-001"
+    name              = "snet-fxl-mlfrw-cus-uat-001"
+    address_prefixes  = ["172.19.162.48/28"]
+    service_endpoints = ["Microsoft.Storage", "Microsoft.KeyVault"]
+    pe_enable         = false
+    delegation        = null
+  },
+  subnet7 = {
+    vnet_key          = "npe"
+    vnet_name         = "vnet-fxl-mangz-eu2-npe-001"
+    name              = "snet-fxl-mlscr-cus-uat-001"
+    address_prefixes  = ["172.19.162.64/28"]
+    service_endpoints = ["Microsoft.Storage", "Microsoft.KeyVault"]
+    pe_enable         = false
+    delegation        = null
+  },
+  subnet8 = {
+    vnet_key          = "npe"
+    vnet_name         = "vnet-fxl-mangz-eu2-npe-001"
+    name              = "snet-fxl-mltrn-cus-uat-001"
+    address_prefixes  = ["172.19.162.80/28"]
+    service_endpoints = ["Microsoft.Storage", "Microsoft.KeyVault"]
+    pe_enable         = false
+    delegation        = null
+  }
+}
+
+cus_subnets = {
+  subnet1 = {
+    vnet_key          = "cus"
+    vnet_name         = "vnet-fxl-mangz-cus-prd-001"
+    name              = "snet-fxl-admin-cus-prd-001"
+    address_prefixes  = ["172.19.164.0/24"]
+    service_endpoints = ["Microsoft.Storage", "Microsoft.KeyVault"]
+    pe_enable         = false
+    delegation        = null
+  },
+  subnet2 = {
+    vnet_key          = "cus"
+    vnet_name         = "vnet-fxl-mangz-cus-prd-001"
+    name              = "snet-fxl-mlfrw-cus-prd-001"
+    address_prefixes  = ["172.19.165.0/27"]
+    service_endpoints = ["Microsoft.Storage", "Microsoft.KeyVault"]
+    pe_enable         = false
+    delegation        = null
+  },
+  subnet3 = {
+    vnet_key          = "cus"
+    vnet_name         = "vnet-fxl-mangz-cus-prd-001"
+    name              = "snet-fxl-mlscr-cus-prd-001"
+    address_prefixes  = ["172.19.165.32/27"]
+    service_endpoints = ["Microsoft.Storage", "Microsoft.KeyVault"]
+    pe_enable         = false
+    delegation        = null
+  },
+  subnet4 = {
+    vnet_key          = "cus"
+    vnet_name         = "vnet-fxl-mangz-cus-prd-001"
+    name              = "snet-fxl-mltrn-cus-prd-001"
+    address_prefixes  = ["172.19.165.64/27"]
+    service_endpoints = ["Microsoft.Storage", "Microsoft.KeyVault"]
+    pe_enable         = false
+    delegation        = null
+  }
+}
+
+eus_subnets = {
+  subnet1 = {
+    vnet_key          = "eus"
+    vnet_name         = "vnet-fxl-mangz-eu2-prd-001"
+    name              = "snet-fxl-admin-eu2-prd-001"
+    address_prefixes  = ["172.19.206.0/24"]
+    service_endpoints = ["Microsoft.Storage", "Microsoft.KeyVault"]
+    pe_enable         = false
+    delegation        = null
+  },
+  subnet2 = {
+    vnet_key          = "eus"
+    vnet_name         = "vnet-fxl-mangz-eu2-prd-001"
+    name              = "snet-fxl-mlfrw-eu2-prd-001"
+    address_prefixes  = ["172.19.207.0/27"]
+    service_endpoints = ["Microsoft.Storage", "Microsoft.KeyVault"]
+    pe_enable         = false
+    delegation        = null
+  },
+  subnet3 = {
+    vnet_key          = "eus"
+    vnet_name         = "vnet-fxl-mangz-eu2-prd-001"
+    name              = "snet-fxl-mlscr-eu2-prd-001"
+    address_prefixes  = ["172.19.207.32/27"]
+    service_endpoints = ["Microsoft.Storage", "Microsoft.KeyVault"]
+    pe_enable         = false
+    delegation        = null
+  },
+  subnet4 = {
+    vnet_key          = "eus"
+    vnet_name         = "vnet-fxl-mangz-eu2-prd-001"
+    name              = "snet-fxl-mltrn-eu2-prd-001"
+    address_prefixes  = ["172.19.207.64/27"]
+    service_endpoints = ["Microsoft.Storage", "Microsoft.KeyVault"]
+    pe_enable         = false
+    delegation        = null
+  }
+}
+
+net_additional_tags = {
+  iac = "Terraform"
+}
