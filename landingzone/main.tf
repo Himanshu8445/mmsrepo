@@ -10,3 +10,9 @@ module "appliacation-insights" {
   law_workspace_id       = var.law_workspace_id
   appin_additional_tags  = var.appin_additional_tags
 }
+
+module "asp" {
+  source              = "../modules/appserviceplan"
+  app_service_plan    = var.app_service_plan
+  asp_additional_tags = var.asp_additional_tags
+}
