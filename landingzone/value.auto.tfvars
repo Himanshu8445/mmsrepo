@@ -25,7 +25,7 @@ application_insights = {
   }
 }
 
-law_workspace_id = "/subscriptions/be7051ef-9485-4207-b746-9f6a24b3cc8a/resourcegroups/rg-fxl-infsc-eu2-prd-001/providers/microsoft.operationalinsights/workspaces/law-fxl-mangz-cus-prd-001"
+law_workspace_id = "/subscriptions/be7051ef-9485-4207-b746-9f6a24b3cc8a/resourceGroups/rg-fxl-infsc-eu2-prd-001/providers/microsoft.operationalinsights/workspaces/law-fxl-mangz-cus-prd-001"
 
 appin_additional_tags = {
   iac = "Terraform"
