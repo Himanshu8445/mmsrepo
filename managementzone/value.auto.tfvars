@@ -323,3 +323,84 @@ eus_subnets = {
 net_additional_tags = {
   iac = "Terraform"
 }
+
+### Windows Virtual Machine
+
+resource_group_name_vm  = "rg-fxl-shirvm-eu2-prd-001"
+key_vault_name          = "kvfxlmangzeu2prd001"
+Keyvault_resource_group = "rg-fxl-stgkv-eu2-prd-001"
+
+windows_vms = {
+  vm1 = {
+    name                                 = "shirvm"
+    computer_name                        = "shirvm"
+    vm_size                              = "Standard_DS2"
+    assign_identity                      = true
+    availability_set_key                 = null
+    vm_nic_keys                          = ["nic1"]
+    zone                                 = null
+    source_image_reference_offer         = "WindowsServer"          # set this to null if you are  using image id from shared image gallery or if you are passing image id to the VM through packer
+    source_image_reference_publisher     = "MicrosoftWindowsServer" # set this to null if you are  using image id from shared image gallery or if you are passing image id to the VM through packer  
+    source_image_reference_sku           = "2016-Datacenter"        # set this to null if you are using image id from shared image gallery or if you are passing image id to the VM through packer 
+    source_image_reference_version       = "latest"                 # set this to null if you are using image id from shared image gallery or if you are passing image id to the VM through packer             
+    os_disk_name                         = "shirvm-os"
+    storage_os_disk_caching              = "ReadWrite"
+    managed_disk_type                    = "Standard_LRS"
+    disk_size_gb                         = null
+    write_accelerator_enabled            = null
+    recovery_services_vault_name         = null #"tfex-recovery-vault"
+    vm_backup_policy_name                = null #"tfex-recovery-vault-policy"
+    use_existing_disk_encryption_set     = false
+    existing_disk_encryption_set_name    = null
+    existing_disk_encryption_set_rg_name = null
+    customer_managed_key_name            = null
+    disk_encryption_set_name             = null
+    enable_cmk_disk_encryption           = true # set it to true if you want to enable disk encryption using customer managed key
+    enable_automatic_updates             = true
+    custom_data_path                     = null #"//script_file.ps1" # Optional
+    custom_data_args                     = null #"{ name = "VMandVM", destination = "EASTUS2", version = "1.0" }    
+  }
+}
+windows_vm_nics = {
+  nic1 = {
+    name                           = "shirvm-nic-01"
+    subnet_name                    = "snet-fxl-admin-eu2-prd-001"
+    subnet_id                      = "/subscriptions/be7051ef-9485-4207-b746-9f6a24b3cc8a/resourceGroups/rg-fxl-vnet-eu2-prd-001/providers/Microsoft.Network/virtualNetworks/vnet-fxl-mangz-eu2-prd-001/subnets/snet-fxl-admin-eu2-prd-001"
+    vnet_name                      = "vnet-fxl-mangz-eu2-prd-001"
+    networking_resource_group      = "rg-udf-dl-net-sx-eus2-01"
+    lb_backend_pool_names          = null
+    lb_nat_rule_names              = null
+    app_security_group_names       = null
+    app_gateway_backend_pool_names = null
+    internal_dns_name_label        = null
+    enable_ip_forwarding           = null # set it to true if you want to enable IP forwarding on the NIC
+    enable_accelerated_networking  = null # set it to true if you want to enable accelerated networking
+    dns_servers                    = null
+    nic_ip_configurations = [
+      {
+        static_ip = null
+        name      = "ip-config-shir-01"
+      }
+    ]
+  }
+}
+win_administrator_user_name = "winvmitadmin"
+key_vault_id                = "/subscriptions/be7051ef-9485-4207-b746-9f6a24b3cc8a/resourceGroups/rg-fxl-stgkv-eu2-prd-001/providers/Microsoft.KeyVault/vaults/kvfxlmangzeu2prd001"
+managed_data_disks = {
+  "disk1" = {
+    disk_name                 = "shirvm-datadisk-1"
+    vm_key                    = "vm1"
+    lun                       = 0
+    storage_account_type      = "Standard_LRS"
+    disk_size                 = "512"
+    caching                   = "None"
+    write_accelerator_enabled = false
+    create_option             = null
+    os_type                   = null
+    source_resource_id        = null
+  }
+}
+
+vm_additional_tags = {
+  iac = "Terraform"
+}

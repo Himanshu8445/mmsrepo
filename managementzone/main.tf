@@ -61,19 +61,15 @@ module "eus-vnet" {
   net_additional_tags            = var.net_additional_tags
 }
 
-/* module "linuxvm" {
-  source                  = "../modules/linuxvirtualmachine"
-  linux_vms               = var.linux_vms
-  resource_group_name_vm  = var.resource_group_name_vm
-  key_vault_name          = var.key_vault_name
-  administrator_user_name = var.administrator_user_name
-  linux_vm_nics           = var.linux_vm_nics
-  managed_data_disks      = var.managed_data_disks
-  Keyvault_resource_group = var.Keyvault_resource_group
+module "windows-vm" {
+  source                      = "../modules/windowsvirtualmachine"
+  windows_vms                 = var.windows_vms
+  resource_group_name_vm      = var.resource_group_name_vm
+  key_vault_name              = var.key_vault_name
+  win_administrator_user_name = var.win_administrator_user_name
+  windows_vm_nics             = var.windows_vm_nics
+  managed_data_disks          = var.managed_data_disks
+  key_vault_id                = var.key_vault_id
+  Keyvault_resource_group     = var.Keyvault_resource_group
+  vm_additional_tags          = var.vm_additional_tags
 }
-
-module "purview_account" {
-  source          = "../modules/purviewaccount"
-  purview_account = var.purview_account
-  depends_on      = [module.resourcegroup]
-} */
